@@ -97,8 +97,8 @@ body {
   width: 100%;
   height: 100%;
   z-index: -999;
-  background-image: -webkit-gradient(linear, left top, right top, from(rgba(255, 197, 61, 0.627889)), color-stop(54%, rgba(255, 197, 61, 0.916404)), color-stop(78%, #ffc53d)), url("/img/bg.jpg");
-  background-image: linear-gradient(90deg, rgba(255, 197, 61, 0.627889) 0%, rgba(255, 197, 61, 0.916404) 54%, #ffc53d 78%), url("/img/bg.jpg");
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(255, 197, 61, 0.627889)), color-stop(54%, rgba(255, 197, 61, 0.916404)), color-stop(78%, #ffc53d)), url("./img/bg.jpg");
+  background-image: linear-gradient(90deg, rgba(255, 197, 61, 0.627889) 0%, rgba(255, 197, 61, 0.916404) 54%, #ffc53d 78%), url("./img/bg.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

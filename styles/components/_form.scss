@@ -1,0 +1,110 @@
+.form {
+  &-converter {
+    margin: 0 auto;
+    display: flex;
+    padding: 0 3rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+
+    &__input,
+    &__select
+     {
+      border: none;
+      border-radius: 6px;
+      min-height: 4rem;
+      padding: 1rem;
+      text-align-last: center;
+      flex: 1;
+      height: 6rem;
+      margin-right: 1.5rem;
+    }
+    &__select {
+      width: 150px;
+      position: relative;
+    }
+    &__label {
+      position: absolute;
+      top: -3rem;
+      left: 0;
+      z-index: 2;
+    }
+  }
+}
+
+.select__container {
+  display: flex;
+  flex: 1;
+  justify-content: space-evenly;
+}
+.select__wrapper {
+  width: fit-content;
+  position: relative;
+  
+}
+.result {
+ flex: 5;
+ min-width: 300px;
+ max-width: 60rem;
+ align-self: flex-end;
+ text-align: right;
+ margin-left: auto;
+ margin-top: 3rem;
+ display: flex;
+ align-items: center;
+ justify-content: flex-end;
+ padding-right: 1rem;
+ &__icon {
+padding: .1rem; 
+margin-right: .5rem;
+}
+}
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: $c-primary;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: $fs-l;
+  padding: 10px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 0;
+  max-height: 6rem;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover {
+  background-color: $c-green;
+  & span {
+    padding-right: 25px;
+  }
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.disabled {
+  background-color: $c-light-grey;
+  display: none;
+}

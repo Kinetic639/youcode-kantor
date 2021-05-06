@@ -1,14 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./main.js" defer></script>
-    <link rel="stylesheet" href="./styles/main.css">
-    <title>Youcode - kantor</title>
-</head>
-<body>
-    kantor walutowy
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./js/main.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="icon" type="image/svg+xml" href="/img/money.svg" />
+    <title>Kantor Youcode</title>
+  </head>
+  <body>
+    <div class="wrapper-main">
+      <nav class="nav-bar">
+        <div class="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+        <header class="branding ">
+            <div class=" avatar "><img src="./img/money.svg" alt=""></div>
+            <h1 class="hero__title">kantor <span>Youcode</span></h1>
+        </header>
+        <ul class="nav-menu ">
+            <li class="nav-menu__item nav-menu__item--desktop"><a href="#section-calculator">Kalkulator</a></li>
+            <li class="nav-menu__item nav-menu__item--desktop"><a href="#secion__rates">Kursy</a></li>
+            <li class="nav-menu__item nav-menu__item--desktop"><a href="#skills">Info</a></li>
+            <li class="nav-menu__item nav-menu__item--desktop"><a href="#skills">Contact</a></li>
+        </ul>
+    </nav>
+     
+
+      <section id="section-calculator" class="section section-calculator">
+        <form action="" class="form-converter">
+          <div class="select__wrapper input__wrapper">
+            <label for="amount" class="form-converter__label">Kwota</label>
+            <input
+              onkeypress="validate(event)"
+              id="amount"
+              type="text"
+              class="form-converter__input"
+              maxlength="8"
+              required
+            />
+          </div>
+          <div class="select__container">
+            <div class="select__wrapper">
+              <label for="from" class="form-converter__label">Mam</label>
+              <select
+                id="from"
+                name="from"
+                class="form-converter__select"
+                required
+              >
+                <option value="PLN" class="form-converter__option" selected>
+                  PLN
+                </option>
+              </select>
+            </div>
+            <div class="select__wrapper ">
+              <label for="to" class="form-converter__label">Chcę</label>
+              <select id="to" name="to" class="form-converter__select" required>
+                <option
+                  value="PLN"
+                  class="form-converter__option disabled"
+                  disabled
+                >
+                  PLN
+                </option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="button"><span>Oblicz</span></button>
+          <div class='result'><i class="fas fa-info-circle result__icon result__icon--info"></i><p>Podaj kwotę, następnie wybierz jakie waluty Cię interesują i kliknij oblicz.</p></div>
+        </form>
+      </section>
+      <section id="secion__rates" class="secion__rates section">
+        <ul class="rates-list"></ul>
+      </section>
+      <section class="section section-faq"></section>
+      <footer class="footer">
+        <p>Copyrights &copy; Michał Stępień 2021</p>
+      </footer>
+    </div>
+
+    <template id="select-option">
+      <option value="" class="form-converter__option"></option>
+    </template>
+
+    <template id="rates-item">
+      <li class="rates-item">
+        <div class="rates-item__header">
+          <div class="rates-item__header-icon-container">
+            <img class="rates-item__header-icon" src="" alt="" />
+          </div>
+          <h1 class="rates-item__header-text">Euro</h1>
+        </div>
+        <div class="rates-item__data">
+          <div class="rates-item__code">
+            <h2 class="rates-item__code-text">EUR</h2>
+          </div>
+          <div class="rates-item__buy">
+            <p class="rates-item__rate-number-text buy-price">4.5414</p>
+            <p class="rates-item__rate-number-subtext">Kupno</p>
+          </div>
+          <div class="rates-item__sell">
+            <p class="rates-item__rate-number-text sell-price">4.5714</p>
+            <p class="rates-item__rate-number-subtext">Sprzedaż</p>
+          </div>
+        </div>
+      </li>
+    </template>
+  </body>
 </html>

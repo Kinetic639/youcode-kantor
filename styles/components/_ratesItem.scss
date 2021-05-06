@@ -1,0 +1,59 @@
+.rates-item {
+  margin: 2rem 0;
+  padding-top: 2rem;
+
+  border-top: 2px dotted $c-secondary;
+    &:nth-child(-n+2),
+    &:nth-child(3){
+      border-top: none;
+    }
+    &:nth-child(odd) {
+      border-left: none;
+    }
+  &__header {
+    display: flex;
+    align-items: center;
+    &-icon {
+      display: block;
+      margin: 0 auto;
+      &-container {
+        display: flex;
+        flex: 1;
+      }
+    }
+
+    &-text {
+      flex: 2;
+    }
+  }
+  &__data {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    // & > :not(:last-child) {
+    //   margin-right: 2rem;
+    // }
+    & > :nth-child(2) {
+      margin: 0 1rem;
+    }
+  }
+  &__code {
+    &-text {
+      margin: 0 1rem;
+    }
+  }
+  // &__buy {
+  // }
+  // &__sell {
+  // }
+  &__rate-number {
+    &-text {
+      margin: 0;
+    }
+    &-subtext {
+      margin: 0;
+    }
+  }
+
+}
+

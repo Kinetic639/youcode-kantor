@@ -1,4 +1,4 @@
-fetch("http://api.nbp.pl/api/exchangerates/tables/c/?format=json")
+fetch("https://api.nbp.pl/api/exchangerates/tables/c/?format=json")
   .then((response) => response.json())
   .then((data) => {
     data[0].rates.slice(0, 12).forEach((el) => {

@@ -17,10 +17,34 @@ html {
   box-sizing: inherit;
 }
 
+::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
+}
+
 .rates-item__header-icon {
   max-width: 30px;
   height: 30px;
   border-radius: 50%;
   overflow: hidden;
+}
+.section-info {
+  margin-top: 10rem;
+  &__header {
+    font-size: 2rem;
+  }
+}
+.info-list {
+ line-height: 1.8;
+ &__item {
+& a {
+  text-decoration: none;
+  color: $c-orange-dark;
+}
+ }
 }
 

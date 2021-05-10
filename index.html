@@ -41,10 +41,10 @@
             <a href="#secion__rates">Kursy</a>
           </li>
           <li class="nav-menu__item nav-menu__item--desktop">
-            <a href="#skills">Info</a>
+            <a href="#section-info">Info</a>
           </li>
           <li class="nav-menu__item nav-menu__item--desktop">
-            <a href="#skills">Contact</a>
+            <a href="#footer">Contact</a>
           </li>
         </ul>
       </nav>
@@ -59,7 +59,7 @@
               class="form-converter__input"
               maxlength="8"
               required
-              name='amount'
+              name="amount"
               step=".01"
             />
           </div>
@@ -103,16 +103,34 @@
       <section id="secion__rates" class="secion__rates section">
         <ul class="rates-list"></ul>
       </section>
-      <section class="section section-info">
+      <section id="section-info" class="section section-info">
         <h1 class="section-info__header">
           Najważniejsze informacje na temat projektu
         </h1>
-        <ul class="info-list">
+        <ol class="info-list">
           <li class="info-list__item">
-            Pobiera najświeższe kursy z 
-            <a href="http://api.nbp.pl/en.html">API Narodowego Banku Polskiego</a> .
-          </li>  <li class="info-list__item">Zapisuje kursy w localStorage</li>
-        </ul>
+            Pobiera najświeższe kursy z
+            <a href="http://api.nbp.pl/en.html"
+              >API Narodowego Banku Polskiego</a
+            >
+            .
+          </li>
+          <li class="info-list__item">Zapisuje kursy w localStorage</li>
+          <li class="info-list__item">
+            Na podstawie ilości pobranych kursów tworzy dla każdego z nich
+            tablicę używając elementu &lt;template&gt;
+          </li>
+          . Tym samym sposobem renderowane są również wszystkie opcje wewnątrz
+          każdego elementu &lt;select&gt;.
+
+          <li class="info-list__item">Interesującą nas walutę możemy wybrać z listy bądź po prostu kliknąć w wybraną walutę na tablicy kursów</li>
+          <li class="info-list__item">Po wybraniu waluty z jednej list zostaje ona automatycznie usunięta z drugiej listy. </li>
+          <li class="info-list__item">Przy wymianie PLN na obcą walutę uwzględniona jest cena sprzedaży tej waluty.</li>
+          <li class="info-list__item">Przy wymianie obcej waluty na PLN uwzględniona jest cena skupu.</li>
+          <li class="info-list__item">Przy wymianie jednej obcej waluty na inną najpierw jedna waluta jest wymieniana na PLN po cenie skupu a następnie otrzymana kwota w PLN wymieniana jest na pożądaną walutę po cenie sprzedaży.</li>
+          <li class="info-list__item">Projekt powinien byc względnie responsywny a na małym ekranie menu zwija się do hamburgera.</li>
+          <li class="info-list__item">Design został zaczerpnięty z mojego projektu wizytówki z modułu 3  - <a href="https://codepen.io/Kinetic639/pen/WNRVxOy">wizytówka - codepen.io</a></li>
+        </ol>
       </section>
       <footer class="footer">
         <p>Copyrights &copy; Michał Stępień 2021</p>

@@ -12,7 +12,12 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./styles/main.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+    />
     <link rel="icon" type="image/svg+xml" href="/img/money.svg" />
     <title>Kantor Youcode</title>
   </head>
@@ -20,35 +25,42 @@
     <div class="wrapper-main">
       <nav class="nav-bar">
         <div class="menuToggle">
-            <span></span>
-            <span></span>
-            <span></span>
-
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
-        <header class="branding ">
-            <div class=" avatar "><img src="./img/money.svg" alt=""></div>
-            <h1 class="hero__title">kantor <span>Youcode</span></h1>
+        <header class="branding">
+          <div class="avatar"><img src="./img/money.svg" alt="" /></div>
+          <h1 class="hero__title">kantor <span>Youcode</span></h1>
         </header>
-        <ul class="nav-menu ">
-            <li class="nav-menu__item nav-menu__item--desktop"><a href="#section-calculator">Kalkulator</a></li>
-            <li class="nav-menu__item nav-menu__item--desktop"><a href="#secion__rates">Kursy</a></li>
-            <li class="nav-menu__item nav-menu__item--desktop"><a href="#skills">Info</a></li>
-            <li class="nav-menu__item nav-menu__item--desktop"><a href="#skills">Contact</a></li>
+        <ul class="nav-menu">
+          <li class="nav-menu__item nav-menu__item--desktop">
+            <a href="#section-calculator">Kalkulator</a>
+          </li>
+          <li class="nav-menu__item nav-menu__item--desktop">
+            <a href="#secion__rates">Kursy</a>
+          </li>
+          <li class="nav-menu__item nav-menu__item--desktop">
+            <a href="#skills">Info</a>
+          </li>
+          <li class="nav-menu__item nav-menu__item--desktop">
+            <a href="#skills">Contact</a>
+          </li>
         </ul>
-    </nav>
-     
+      </nav>
 
       <section id="section-calculator" class="section section-calculator">
         <form action="" class="form-converter">
           <div class="select__wrapper input__wrapper">
             <label for="amount" class="form-converter__label">Kwota</label>
             <input
-              onkeypress="validate(event)"
               id="amount"
-              type="text"
+              type="number"
               class="form-converter__input"
               maxlength="8"
               required
+              name='amount'
+              step=".01"
             />
           </div>
           <div class="select__container">
@@ -65,7 +77,7 @@
                 </option>
               </select>
             </div>
-            <div class="select__wrapper ">
+            <div class="select__wrapper">
               <label for="to" class="form-converter__label">Chcę</label>
               <select id="to" name="to" class="form-converter__select" required>
                 <option
@@ -79,13 +91,29 @@
             </div>
           </div>
           <button type="submit" class="button"><span>Oblicz</span></button>
-          <div class='result'><i class="fas fa-info-circle result__icon result__icon--info"></i><p>Podaj kwotę, następnie wybierz jakie waluty Cię interesują i kliknij oblicz.</p></div>
+          <div class="result">
+            <i class="fas fa-info-circle result__icon result__icon--info"></i>
+            <p class="result__text">
+              Podaj kwotę, następnie wybierz jakie waluty Cię interesują i
+              kliknij oblicz.
+            </p>
+          </div>
         </form>
       </section>
       <section id="secion__rates" class="secion__rates section">
         <ul class="rates-list"></ul>
       </section>
-      <section class="section section-faq"></section>
+      <section class="section section-info">
+        <h1 class="section-info__header">
+          Najważniejsze informacje na temat projektu
+        </h1>
+        <ul class="info-list">
+          <li class="info-list__item">
+            Pobiera najświeższe kursy z 
+            <a href="http://api.nbp.pl/en.html">API Narodowego Banku Polskiego</a> .
+          </li>  <li class="info-list__item">Zapisuje kursy w localStorage</li>
+        </ul>
+      </section>
       <footer class="footer">
         <p>Copyrights &copy; Michał Stępień 2021</p>
       </footer>

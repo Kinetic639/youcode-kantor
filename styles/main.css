@@ -97,8 +97,8 @@ body {
   width: 100%;
   height: 100%;
   z-index: -999;
-  background-image: -webkit-gradient(linear, left top, right top, from(rgba(255, 197, 61, 0.627889)), color-stop(54%, rgba(255, 197, 61, 0.916404)), color-stop(78%, #ffc53d)), url("./img/bg.jpg");
-  background-image: linear-gradient(90deg, rgba(255, 197, 61, 0.627889) 0%, rgba(255, 197, 61, 0.916404) 54%, #ffc53d 78%), url("./img/bg.jpg");
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(255, 197, 61, 0.627889)), color-stop(54%, rgba(255, 197, 61, 0.916404)), color-stop(78%, #ffc53d)), url("../../img/bg.jpg");
+  background-image: linear-gradient(90deg, rgba(255, 197, 61, 0.627889) 0%, rgba(255, 197, 61, 0.916404) 54%, #ffc53d 78%), url("../../img/bg.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -110,12 +110,13 @@ body {
 }
 
 .rates-item {
-  margin: 2rem 0;
-  padding-top: 2rem;
+  padding: 2rem 0;
   border-top: 2px dotted #FFC53D;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
-.rates-item:nth-child(-n+2), .rates-item:nth-child(3) {
+.rates-item:nth-child(-n + 2), .rates-item:nth-child(3) {
   border-top: none;
 }
 
@@ -178,6 +179,19 @@ body {
 
 .rates-item__rate-number-subtext {
   margin: 0;
+}
+
+.rates-item:hover {
+  background-color: rgba(255, 197, 61, 0.2);
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.selected-rate,
+.selected-rate:hover {
+  background-color: #515151;
+  color: #FFC53D;
 }
 
 .nav-bar {
@@ -375,11 +389,13 @@ body {
       -ms-flex-pack: end;
           justify-content: flex-end;
   padding-right: 1rem;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .result__icon {
-  padding: .1rem;
-  margin-right: .5rem;
+  padding: 0.1rem;
+  margin-right: 0.5rem;
 }
 
 .button {
@@ -433,6 +449,10 @@ body {
 .disabled {
   background-color: #c7c7c7;
   display: none;
+}
+
+.amount-info {
+  font-weight: 700;
 }
 
 .menuToggle {

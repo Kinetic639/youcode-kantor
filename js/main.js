@@ -1,3 +1,30 @@
+//blocking double selection
+const blockDoubleSelection = (el) => {
+  const getSelect = el.id === "from" ? "to" : "from";
+  const getOption = document.querySelector(
+    `#${getSelect} option[value="${el.selectedOptions[0].value}"]`
+    );
+  document.querySelectorAll(`#${getSelect} option`).forEach((opt) => {
+    opt.disabled = false;
+    opt.classList.remove("disabled");
+  });
+  getOption.classList.add("disabled");
+  getOption.disabled = true;
+  if (el.id == "to") {
+    const rateCards = document.querySelectorAll(".rates-item");
+    rateCards.forEach((card) => {
+      card.classList.remove("selected-rate");
+    });
+    if (getOption.value !== "PLN") {
+      document
+        .querySelector(`#rates-item--${getOption.value}`)
+        .classList.add("selected-rate");
+    }
+  }
+};
+
+// box.addEventListener("change", blockDoubleSelection(box))
+
 fetch("https://api.nbp.pl/api/exchangerates/tables/c/?format=json")
   .then((response) => response.json())
   .then((data) => {
@@ -6,11 +33,13 @@ fetch("https://api.nbp.pl/api/exchangerates/tables/c/?format=json")
         const temp = document.querySelector("#rates-item");
         const ratesList = document.querySelector(".rates-list");
         const clone = temp.content.cloneNode(true);
+        const wrapper = clone.querySelector(".rates-item");
         const headerIcon = clone.querySelector(".rates-item__header-icon");
         const headerText = clone.querySelector(".rates-item__header-text");
         const codeText = clone.querySelector(".rates-item__code-text");
         const buyPrice = clone.querySelector(".buy-price");
         const sellPrice = clone.querySelector(".sell-price");
+        wrapper.id = `rates-item--${el.code}`;
         headerIcon.src = `./img/flags/1x1/${el.code.toLowerCase()}.svg`;
         headerText.innerText = el.currency;
         codeText.innerText = el.code;
@@ -26,58 +55,48 @@ fetch("https://api.nbp.pl/api/exchangerates/tables/c/?format=json")
           const cloneOpt = clone.querySelector(".form-converter__option");
           cloneOpt.innerText = el.code;
           cloneOpt.value = el.code;
-        
           box.appendChild(clone);
         });
-
-        // ratesList.appendChild(clone);
       };
       renderSelectOptions();
       renderRatesCards();
+      localStorage.setItem(`${el.code}`, JSON.stringify(el));
     });
-    document.getElementById("to").selectedIndex = -1;
+    const toSelect = document.getElementById("to");
+
+    toSelect.selectedIndex = -1;
+
+    const rateClickHandler = () => {
+      const rateCards = document.querySelectorAll(".rates-item");
+      rateCards.forEach((card) => {
+        card.addEventListener("click", () => {
+          const fromValue = document.querySelector("#from");
+          if (fromValue.value !== card.id.slice(card.id.length - 3)) {
+            rateCards.forEach((card) => {
+              card.classList.remove("selected-rate");
+            });
+            const clickedCurr = card.querySelector(".rates-item__code-text")
+              .innerHTML;
+            toSelect.value = clickedCurr;
+            card.classList.add("selected-rate");
+          }
+          blockDoubleSelection(toSelect)
+        });
+      });
+    };
+
+    rateClickHandler();
   });
 
-//disabling double selection
-const disableDoubleSelection = () => {
+const selectElClickHandler = () => {
   const selectElements = document.querySelectorAll("select");
   selectElements.forEach((el) => {
     el.addEventListener("change", () => {
-      const getSelect = el.id === "from" ? "to" : "from";
-      const getOption = document.querySelector(
-        `#${getSelect} option[value="${el.selectedOptions[0].value}"]`
-      );
-      document.querySelectorAll(`#${getSelect} option`).forEach((opt) => {
-        opt.disabled = false;
-        opt.classList.remove("disabled");
-      });
-      getOption.classList.add("disabled");
-      getOption.disabled = true;
+      blockDoubleSelection(el);
     });
   });
 };
-
-disableDoubleSelection();
-
-//number validation
-function validate(evt) {
-  var theEvent = evt || window.event;
-
-  // Handle paste
-  if (theEvent.type === "paste") {
-    key = event.clipboardData.getData("text/plain");
-  } else {
-    // Handle key press
-    var key = theEvent.keyCode || theEvent.which;
-    key = String.fromCharCode(key);
-  }
-  var regex = /[0-9]|\./;
-  if (!regex.test(key)) {
-    theEvent.returnValue = false;
-    if (theEvent.preventDefault) theEvent.preventDefault();
-  }
-}
-
+selectElClickHandler()
 
 const toggleNavigation = () => {
   const toggleShowClass = () => {
@@ -94,3 +113,50 @@ const toggleNavigation = () => {
 };
 
 toggleNavigation();
+
+const submitForm = () => {
+  const resultEl = document.querySelector(".result");
+  const formEl = document.querySelector(".form-converter");
+  const amountEl = document.querySelector("#amount");
+  const fromEl = document.querySelector("#from");
+  const toEl = document.querySelector("#to");
+  formEl.addEventListener("submit", (e) => {
+    const displayResult = (
+      amount,
+      from,
+      to,
+      buyTransactionValue,
+      sellTransactionValue
+    ) => {
+      resultEl.style.opacity = 0;
+      setTimeout(() => {
+        if (from == "PLN" || to === "PLN") {
+          resultEl.innerHTML = `<p> Za <span class="amount-info">${amount}${from}</span> otrzymasz <span class="amount-info">${sellTransactionValue}${to}</span></p>`;
+        } else {
+          resultEl.innerHTML = `<p>Za <span class="amount-info">${amount}${from}</span> otrzymasz <span class="amount-info">${buyTransactionValue}PLN</span>, które następnie wymienimy na <span class="amount-info">${sellTransactionValue}${to}</span></p>`;
+          // <p>${amount} ${from}  ${buyTransactionValue} ${sellTransactionValue}${to}</p>
+        }
+        resultEl.style.opacity = 1;
+      }, 500);
+    };
+    e.preventDefault();
+    const amount = amountEl.value;
+    const fromElValue =
+      fromEl.value === "PLN"
+        ? 1
+        : JSON.parse(localStorage.getItem(fromEl.value)).bid;
+    const toElValue =
+      toEl.value === "PLN" ? 1 : JSON.parse(localStorage.getItem(to.value)).ask;
+    const buyTransactionValue = Math.round(amount * fromElValue * 100) / 100;
+    const sellTransactionValue =
+      Math.round((buyTransactionValue / toElValue) * 100) / 100;
+    displayResult(
+      amount,
+      fromEl.value,
+      toEl.value,
+      buyTransactionValue,
+      sellTransactionValue
+    );
+  });
+};
+submitForm();

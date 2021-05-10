@@ -5,11 +5,9 @@
     padding: 0 3rem;
     flex-wrap: wrap;
     justify-content: space-between;
-    
 
     &__input,
-    &__select
-     {
+    &__select {
       border: none;
       border-radius: 6px;
       min-height: 4rem;
@@ -40,24 +38,29 @@
 .select__wrapper {
   width: fit-content;
   position: relative;
-  
 }
 .result {
- flex: 5;
- min-width: 300px;
- max-width: 60rem;
- align-self: flex-end;
- text-align: right;
- margin-left: auto;
- margin-top: 3rem;
- display: flex;
- align-items: center;
- justify-content: flex-end;
- padding-right: 1rem;
- &__icon {
-padding: .1rem; 
-margin-right: .5rem;
-}
+  flex: 5;
+  min-width: 300px;
+  max-width: 60rem;
+  align-self: flex-end;
+  text-align: right;
+  margin-left: auto;
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 1rem;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -ms-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+
+  &__icon {
+    padding: 0.1rem;
+    margin-right: 0.5rem;
+  }
 }
 
 .button {
@@ -107,4 +110,8 @@ margin-right: .5rem;
 .disabled {
   background-color: $c-light-grey;
   display: none;
+}
+
+.amount-info {
+  font-weight: 700;
 }

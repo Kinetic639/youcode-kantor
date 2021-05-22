@@ -43,10 +43,7 @@ Projekt stworzony w ramach bootcampu Youcode - Front end od podstaw
 &nbsp;
 ### Użyte technologie:
 
-<img src="https://cdn0.iconfinder.com/data/icons/HTML5/256/HTML_Logo.png" width="50" height="50"> 
-<img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/badge-css-3-512.png" width="50" height="50">  
-<img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/288_Sass_logo-256.png" width="50" height="50">
-<img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/187_Js_logo_logos-256.png" width="50" height="50">
+<img src="https://cdn0.iconfinder.com/data/icons/HTML5/256/HTML_Logo.png" width="50" height="50"><img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/badge-css-3-512.png" width="50" height="50"><img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/288_Sass_logo-256.png" width="50" height="50"><img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/187_Js_logo_logos-256.png" width="50" height="50">
 
 &nbsp;
 

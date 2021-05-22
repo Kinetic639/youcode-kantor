@@ -43,10 +43,6 @@
       margin: 0 1rem;
     }
   }
-  // &__buy {
-  // }
-  // &__sell {
-  // }
   &__rate-number {
     &-text {
       margin: 0;
@@ -63,9 +59,20 @@
   }
 }
 
-.selected-rate,
-.selected-rate:hover {
- 
+.selected-to,
+.selected-from {
   background-color: $c-primary;
   color: $c-secondary;
+  &:hover {
+    background-color: $c-primary;
+    cursor: auto;
+  }
+}
+
+.selected-from {
+  background-color: $c-light-grey;
+  color: $c-primary;
+  &:hover {
+    background-color: $c-light-grey;
+  }
 }

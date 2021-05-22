@@ -186,10 +186,25 @@ body {
   transition: all 0.2s ease-in-out;
 }
 
-.selected-rate,
-.selected-rate:hover {
+.selected-to,
+.selected-from {
   background-color: #515151;
   color: #FFC53D;
+}
+
+.selected-to:hover,
+.selected-from:hover {
+  background-color: #515151;
+  cursor: auto;
+}
+
+.selected-from {
+  background-color: #c7c7c7;
+  color: #515151;
+}
+
+.selected-from:hover {
+  background-color: #c7c7c7;
 }
 
 .nav-bar {

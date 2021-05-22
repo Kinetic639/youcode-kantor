@@ -102,6 +102,7 @@ const init = () => {
       .then((res) => res.json())
       .then((data) => {
         data[0].rates.slice(0, 12).forEach((rate) => {
+          window.localStorage.setItem(rate.code, JSON.stringify(rate))
           renderRateCard(rate);
           renderOptionInSelect(rate);
         });

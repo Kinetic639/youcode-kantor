@@ -1,4 +1,6 @@
-//blocking double selection
+const init = () => {
+
+  //blocking double selection
 const blockDoubleSelection = (el) => {
   const getSelect = el.id === "from" ? "to" : "from";
   const getOption = document.querySelector(
@@ -25,7 +27,8 @@ const blockDoubleSelection = (el) => {
 
 // box.addEventListener("change", blockDoubleSelection(box))
 
-fetch("https://api.nbp.pl/api/exchangerates/tables/c/?format=json")
+const fetchRates = () => {
+  fetch("https://api.nbp.pl/api/exchangerates/tables/c/?format=json")
   .then((response) => response.json())
   .then((data) => {
     data[0].rates.slice(0, 12).forEach((el) => {
@@ -62,8 +65,8 @@ fetch("https://api.nbp.pl/api/exchangerates/tables/c/?format=json")
       renderRatesCards();
       localStorage.setItem(`${el.code}`, JSON.stringify(el));
     });
+    
     const toSelect = document.getElementById("to");
-
     toSelect.selectedIndex = -1;
 
     const rateClickHandler = () => {
@@ -87,76 +90,82 @@ fetch("https://api.nbp.pl/api/exchangerates/tables/c/?format=json")
 
     rateClickHandler();
   });
+}
+fetchRates()
+}
 
-const selectElClickHandler = () => {
-  const selectElements = document.querySelectorAll("select");
-  selectElements.forEach((el) => {
-    el.addEventListener("change", () => {
-      blockDoubleSelection(el);
-    });
-  });
-};
-selectElClickHandler()
+init()
 
-const toggleNavigation = () => {
-  const toggleShowClass = () => {
-    elementsList = [".nav-menu", ".branding", ".menuToggle"];
-    elementsList.forEach((el) => {
-      const element = document.querySelector(el);
-      element.classList.toggle("show");
-    });
-  };
-  const toggleBtn = document.querySelector(".menuToggle");
-  const navMenu = document.querySelector(".nav-menu");
-  toggleBtn.addEventListener("click", toggleShowClass);
-  navMenu.addEventListener("click", toggleShowClass);
-};
 
-toggleNavigation();
+// const selectElClickHandler = () => {
+//   const selectElements = document.querySelectorAll("select");
+//   selectElements.forEach((el) => {
+//     el.addEventListener("change", () => {
+//       blockDoubleSelection(el);
+//     });
+//   });
+// };
+// selectElClickHandler()
 
-const submitForm = () => {
-  const resultEl = document.querySelector(".result");
-  const formEl = document.querySelector(".form-converter");
-  const amountEl = document.querySelector("#amount");
-  const fromEl = document.querySelector("#from");
-  const toEl = document.querySelector("#to");
-  formEl.addEventListener("submit", (e) => {
-    const displayResult = (
-      amount,
-      from,
-      to,
-      buyTransactionValue,
-      sellTransactionValue
-    ) => {
-      resultEl.style.opacity = 0;
-      setTimeout(() => {
-        if (from == "PLN" || to === "PLN") {
-          resultEl.innerHTML = `<p> Za <span class="amount-info">${amount}${from}</span> otrzymasz <span class="amount-info">${sellTransactionValue}${to}</span></p>`;
-        } else {
-          resultEl.innerHTML = `<p>Za <span class="amount-info">${amount}${from}</span> otrzymasz <span class="amount-info">${buyTransactionValue}PLN</span>, które następnie wymienimy na <span class="amount-info">${sellTransactionValue}${to}</span></p>`;
-          // <p>${amount} ${from}  ${buyTransactionValue} ${sellTransactionValue}${to}</p>
-        }
-        resultEl.style.opacity = 1;
-      }, 500);
-    };
-    e.preventDefault();
-    const amount = amountEl.value;
-    const fromElValue =
-      fromEl.value === "PLN"
-        ? 1
-        : JSON.parse(localStorage.getItem(fromEl.value)).bid;
-    const toElValue =
-      toEl.value === "PLN" ? 1 : JSON.parse(localStorage.getItem(to.value)).ask;
-    const buyTransactionValue = Math.round(amount * fromElValue * 100) / 100;
-    const sellTransactionValue =
-      Math.round((buyTransactionValue / toElValue) * 100) / 100;
-    displayResult(
-      amount,
-      fromEl.value,
-      toEl.value,
-      buyTransactionValue,
-      sellTransactionValue
-    );
-  });
-};
-submitForm();
+// const toggleNavigation = () => {
+//   const toggleShowClass = () => {
+//     elementsList = [".nav-menu", ".branding", ".menuToggle"];
+//     elementsList.forEach((el) => {
+//       const element = document.querySelector(el);
+//       element.classList.toggle("show");
+//     });
+//   };
+//   const toggleBtn = document.querySelector(".menuToggle");
+//   const navMenu = document.querySelector(".nav-menu");
+//   toggleBtn.addEventListener("click", toggleShowClass);
+//   navMenu.addEventListener("click", toggleShowClass);
+// };
+
+// toggleNavigation();
+
+// const submitForm = () => {
+//   const resultEl = document.querySelector(".result");
+//   const formEl = document.querySelector(".form-converter");
+//   const amountEl = document.querySelector("#amount");
+//   const fromEl = document.querySelector("#from");
+//   const toEl = document.querySelector("#to");
+//   formEl.addEventListener("submit", (e) => {
+//     const displayResult = (
+//       amount,
+//       from,
+//       to,
+//       buyTransactionValue,
+//       sellTransactionValue
+//     ) => {
+//       resultEl.style.opacity = 0;
+//       setTimeout(() => {
+//         if (from == "PLN" || to === "PLN") {
+//           resultEl.innerHTML = `<p> Za <span class="amount-info">${amount}${from}</span> otrzymasz <span class="amount-info">${sellTransactionValue}${to}</span></p>`;
+//         } else {
+//           resultEl.innerHTML = `<p>Za <span class="amount-info">${amount}${from}</span> otrzymasz <span class="amount-info">${buyTransactionValue}PLN</span>, które następnie wymienimy na <span class="amount-info">${sellTransactionValue}${to}</span></p>`;
+//           // <p>${amount} ${from}  ${buyTransactionValue} ${sellTransactionValue}${to}</p>
+//         }
+//         resultEl.style.opacity = 1;
+//       }, 500);
+//     };
+//     e.preventDefault();
+//     const amount = amountEl.value;
+//     const fromElValue =
+//       fromEl.value === "PLN"
+//         ? 1
+//         : JSON.parse(localStorage.getItem(fromEl.value)).bid;
+//     const toElValue =
+//       toEl.value === "PLN" ? 1 : JSON.parse(localStorage.getItem(to.value)).ask;
+//     const buyTransactionValue = Math.round(amount * fromElValue * 100) / 100;
+//     const sellTransactionValue =
+//       Math.round((buyTransactionValue / toElValue) * 100) / 100;
+//     displayResult(
+//       amount,
+//       fromEl.value,
+//       toEl.value,
+//       buyTransactionValue,
+//       sellTransactionValue
+//     );
+//   });
+// };
+// submitForm();

@@ -1,7 +1,7 @@
 
 
 <!-- ![mobile view](Link do widoku desktopowego) -->
-# Projekt HTML & CSS — Wizytówka / Portfolio
+# Projekt Kantor Youcode
 Live Demo
 [https://kinetic639.github.io/youcode-kantor/](https://kinetic639.github.io/youcode-kantor/)
 

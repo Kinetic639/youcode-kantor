@@ -52,8 +52,8 @@
       </nav>
 
       <section id="section-calculator" class="section section-calculator">
-        <form action="" class="form-converter">
-          <div class="select__wrapper input__wrapper">
+        <form action="" method="get"  class="form-converter" id="converter">
+          <div action="submit" class="select__wrapper input__wrapper">
             <label for="amount" class="form-converter__label">Kwota</label>
             <input
               id="amount"
@@ -92,7 +92,7 @@
               </select>
             </div>
           </div>
-          <button type="submit" class="button"><span>Oblicz</span></button>
+          <button type="submit" form='converter' class="button" onclick="submitForm"><span>Oblicz</span></button>
           <div class="result">
             <i class="fas fa-info-circle result__icon result__icon--info"></i>
             <p class="result__text">
